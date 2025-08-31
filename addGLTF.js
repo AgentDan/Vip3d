@@ -18,7 +18,7 @@ gltf.scenes[0].extras.env = {
         },
     "fog":
         {
-            "args": ["#000000", 1, 4]
+            "args": ["#000000", 1, 3]
         },
     "toneMapping":
         {
