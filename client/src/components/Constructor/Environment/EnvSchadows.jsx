@@ -3,7 +3,6 @@ import * as THREE from "three";
 import { useEffect } from "react";
 
 const EnvShadows = ({ shadows }) => {
-    console.log("shadows : ", shadows)
     const { gl } = useThree();
 
     useEffect(() => {

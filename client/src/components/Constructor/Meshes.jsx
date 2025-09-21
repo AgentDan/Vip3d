@@ -1,7 +1,7 @@
-import React, { useRef, useEffect } from "react";
+import React from "react";
 import Description from "./Description/Description.jsx";
 
-export function Meshes({ arr, setArr, nodes, materials }) {
+export function Meshes({arr, setArr, nodes, materials}) {
     return (
         <>
             {arr.map((item) => {
@@ -10,6 +10,7 @@ export function Meshes({ arr, setArr, nodes, materials }) {
                         nodes[item.fullName].geometry &&
                         item.check) ||
                     item.name === "default" ||
+                    item.name === "default2" ||
                     item.name === "default1";
 
                 if (!shouldRender) return null;
@@ -21,8 +22,24 @@ export function Meshes({ arr, setArr, nodes, materials }) {
                         castShadow
                         receiveShadow
                     >
-                        <meshStandardMaterial {...materials[item.fullName]} />
-                        {item.description && <Description setArr={setArr} item={item} />}
+                        {/*<meshStandardMaterial {...materials[item.fullName]} />*/}
+
+                        {item.name.replace(/[0-9_]/g, "") !== "mirror"
+                            ?
+                            <meshStandardMaterial {...materials[item.fullName]} />
+                            :
+                            <meshPhysicalMaterial
+                                transparent={true}
+                                // transmission={0}  // физическая прозрачность
+                                roughness={0}        // гладкая поверхность
+                                metalness={0}
+                                ior={1.2}            // стекло/пластик
+                                thickness={2.2}      // толщина для преломления
+                                opacity={0.9}
+                                color="black"
+                            />
+                        }
+                        {item.description && <Description setArr={setArr} item={item}/>}
                     </mesh>
                 );
             })}

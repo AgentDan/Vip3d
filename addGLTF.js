@@ -1,6 +1,6 @@
 import fs from "fs";
 
-const filePath = "./uploads/Agent/soba.gltf";
+const filePath = "./uploads/Agent/plafon.gltf";
 
 const gltf = JSON.parse(fs.readFileSync(filePath, "utf-8"));
 
@@ -8,17 +8,18 @@ gltf.scenes[0].extras = gltf.scenes[0].extras || {};
 
 gltf.scenes[0].extras.env = {
     "lights": [
-        {"type": "spotlight", "position": [1, 1, 1], "intensity": 1.5},
-        {"type": "ambient", "intensity": 1.5}
+        // {"type": "spotlight", "position": [1, 1, 1], "intensity": 1.5, "visible": false},
+        // {"type": "ambient", "intensity": 1.5, "visible": false}
     ],
     "background":
         {
             "type": "exr",
-            "file": "/img/sky.exr"
+            "file": "/img/skyTwo.exr",
+            "intensity": 0.7
         },
     "fog":
         {
-            "args": ["#000000", 1, 3]
+            "args": ["#000000", 1, 20]
         },
     "toneMapping":
         {

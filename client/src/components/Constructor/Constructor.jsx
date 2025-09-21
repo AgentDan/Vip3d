@@ -17,8 +17,6 @@ const Constructor = ({ openelements, setOpenelements, nameFile, arr, setArr }) =
     const extras = scenes?.[0]?.extras ?? scenes?.[0]?.userData?.extras ?? parser?.json?.scenes?.[0]?.extras;
 
     const env = extras?.env ?? null;
-    console.log("extras:", extras); // покажет весь объект extras
-    console.log("env:", env);       // должно вывести { lights: "black" }
 
     useEffect(() => {
         if (!nodes) return;
@@ -50,7 +48,7 @@ const Constructor = ({ openelements, setOpenelements, nameFile, arr, setArr }) =
                 camera={{ fov: 50, position: [0, 0, 5] }}
                 shadows={{ type: THREE.PCFSoftShadowMap }}
             >
-                <Meshes arr={arr} setArr={setArr} materials={materials} nodes={nodes} />
+                <Meshes arr={arr} setArr={setArr} materials={materials} nodes={nodes} env={env}/>
                 {env && <Env env={env} />} {/* Только если env найден */}
                 <OrbitControls makeDefault />
             </Canvas>

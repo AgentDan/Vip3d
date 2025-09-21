@@ -7,15 +7,8 @@ const EnvToneMapping = ({ toneMapping }) => {
 
     useEffect(() => {
         if (!toneMapping) return;
-
-        // установка toneMapping
         gl.toneMapping = THREE[toneMapping.type] || THREE.ACESFilmicToneMapping;
-
-        // экспозиция (яркость)
-        if (toneMapping.exposure !== undefined) {
-            gl.toneMappingExposure = toneMapping.exposure;
-        }
-
+        gl.toneMappingExposure = 0.1;
     }, [toneMapping, gl]);
 
     return null;
